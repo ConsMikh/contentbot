@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  bot:
+    build: .
+    command: /usr/src/app/start.sh
+    volumes:
+      - /home/user/content:/content
+    env_file:
+      - docker/.env
+    restart: always
