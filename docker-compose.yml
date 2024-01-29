@@ -2,9 +2,11 @@ version: '3.7'
 services:
   bot:
     build: .
-    command: ./usr/src/app/start.sh
-    volumes:
-      - /home/user/content:/content
+    command: python3 /usr/src/app/bot.py
+    ports:
+      - "8384:8384"
+    # volumes:
+    #   - /home/user/content:/content
     env_file:
       - docker/.env
     restart: always

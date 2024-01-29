@@ -1,0 +1,19 @@
+FROM python:3.10-alpine
+
+RUN apk update \
+    && apk add --no-cache git openssh-client \
+    && git config --global user.email "a-v-g-u-r@mail.ru" \
+    && git config --global user.name "mka" \
+    && mkdir /content
+
+RUN mkdir -p -m 0644 ~/.ssh 
+RUN ssh-keygen -t rsa -b 4096 -q -N "" -C "gitkey" -f ~/.ssh/alp_key
+
+RUN (crontab -l 2>/dev/null; echo "*/5 * * * * sh /usr/src/app/push.sh") | crontab -
+
+WORKDIR /usr/src/app
+COPY docker/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY src/ ./
+
+CMD [ "python3", "./bot.py" ]

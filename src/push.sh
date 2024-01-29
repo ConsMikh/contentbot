@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-cd /content/ContentRepo
+cd /content/contentrepo
 git add .
 git commit -m "reg commit"
 git push
