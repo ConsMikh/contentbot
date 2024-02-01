@@ -1,9 +1,11 @@
 FROM python:3.10-alpine
 
 RUN apk update \
-    && apk add --no-cache syncthing \
+    && apk add --no-cache syncthing openrc\
     && syncthing generate \
-    && syncthing --no-browser
+    && rc-update add syncthing \
+    && touch /run/openrc/softlevel \
+    && rc-service syncthing start
 
 WORKDIR /usr/src/app
 COPY docker/requirements.txt ./
