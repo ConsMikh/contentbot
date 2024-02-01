@@ -10,4 +10,3 @@ services:
     env_file:
       - docker/.env
     restart: always
-exit
