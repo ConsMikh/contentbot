@@ -2,7 +2,8 @@ FROM python:3.10-alpine
 
 RUN apk update \
     && apk add --no-cache syncthing \
-    && mkdir /content
+    && syncthing generate \
+    && syncthing --no-browser 
 
 WORKDIR /usr/src/app
 COPY docker/requirements.txt ./

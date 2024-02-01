@@ -2,7 +2,7 @@ version: '3.7'
 services:
   bot:
     build: .
-    command: python3 /usr/src/app/bot.py
+    command: sh /usr/src/app/start.sh
     ports:
       - "8384:8384"
     # volumes:
@@ -10,3 +10,4 @@ services:
     env_file:
       - docker/.env
     restart: always
+exit
