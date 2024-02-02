@@ -2,7 +2,7 @@ version: '3.7'
 services:
   bot:
     build: .
-    command: sh /usr/src/app/start.sh
+    command: python3 /usr/src/app/bot.py
     ports:
       - "8384:8384"
     # volumes:

@@ -1,7 +1,7 @@
 FROM python:3.10-alpine
 
 RUN apk update \
-    && apk add --no-cache syncthing openrc
+    && apk add --no-cache syncthing
 
 WORKDIR /usr/src/app
 COPY docker/requirements.txt ./
