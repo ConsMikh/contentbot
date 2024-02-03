@@ -3,10 +3,28 @@ services:
   bot:
     build: .
     command: python3 /usr/src/app/bot.py
-    ports:
-      - "8384:8384"
-    # volumes:
-    #   - /home/user/content:/content
+    volumes:
+      - data_folder:/content
     env_file:
       - docker/.env
     restart: always
+
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: syncthing #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Moscow
+    volumes:
+      - data_folder:/content
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+
+volumes:
+  data_folder:
