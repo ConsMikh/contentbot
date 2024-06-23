@@ -4,7 +4,8 @@ services:
     build: .
     command: python3 /usr/src/app/bot.py
     volumes:
-      - data_folder:/ObsidianBase/ConstantinVault/Content_bot
+      - data_folder:~/ObsidianBase/ConstantinVault/Content_bot
+    env_file:
       - docker/.env
     restart: always
 
@@ -17,7 +18,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - data_folder:/content
+      - data_folder:/repository/ConstantinVault/Content_bot
     ports:
       - 8384:8384
       - 22000:22000/tcp
