@@ -10,9 +10,6 @@ https://gist.github.com/Jonny-exe/9bad76c3adc6e916434005755ea70389
 
 ### Syncthing
 Для извлечения контента из бота используется syncthing. Его установка прописана в Dockerfile
-```docker
-RUN apk update && apk add --no-cache syncthing
-```
 Для его работы в файл .env надо прописать переменную окружения CONTENT_RECIEVER. 
 Переменная должна содержать ID того устройства, на котором уже установлен syncthing и куда будут 
 закачиваться файлы

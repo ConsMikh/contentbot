@@ -1,11 +1,12 @@
 __version__ = 'v0.0.1'
 
 import os
-import json
+# import json
 
 import telebot
+from content import ContentHandler
 
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+# from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 bot_key = os.getenv("CONTENT_CHAT_BOT")
 
@@ -91,7 +92,12 @@ def message_handler(mess):
 
     message = mess.text
     from_user = mess.from_user.id
-    bot.send_message(chat_id=from_user, text=message)
+    handler = ContentHandler(message)
+    if handler.save_content():
+        bot.send_message(chat_id=from_user, text="Сообщение сохранено")
+    else:
+        bot.send_message(chat_id=from_user, text="Сообщение не сохранено")
+
 
 # Может получать и картинки/файлы тоже. Должен их преобразовать в заметки
 # Может формировать сложную заметку. Тогда высылается команда на начало формирования заметки, потом все что идет добавляется в заметку. Когда приходит команда на завершение, все сохраняется в файл
